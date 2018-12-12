@@ -1,0 +1,16 @@
+<h1 class="text-center">Home Page</h1>
+<div class="container text-center">
+  <div class="row justify-content-md-center">
+    <% @products.each do |prod| %>
+      <div class="col-md-auto col-sm-1 mb-4">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag prod.image_url, width: '300px', height: '250', class: 'card-img-top', alt: 'Card image cap' if prod.image_url %>
+          <div class="card-body">
+            <h5 class="card-title"><%= prod.name %></h5>
+            <p class="card-text">Price: <%= prod.price %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

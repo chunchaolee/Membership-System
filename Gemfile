@@ -24,8 +24,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-
+gem 'mini_racer'
+gem 'execjs'
 gem 'bootsnap'
+gem 'bootstrap'
 
 group :development, :test do
   gem 'rspec-rails'
