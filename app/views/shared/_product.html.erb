@@ -1,7 +1,7 @@
 <%= form_for @product do |f| %>
   <%= f.text_field :name, class: "form-control", placeholder: "Enter Product Name" %><br />
   <%= f.text_field :price, class: "form-control", placeholder: "Enter Product Price" %><br />
-  <%= image_tag @product.image, width: '300px' if @product.image? %>
+  <%= image_tag @product.image_url, width: '300px' if @product.image? %>
   <%= f.file_field :image %><br /><br />
 
   <%= f.submit 'Submit', class: "btn btn-outline-secondary"%>

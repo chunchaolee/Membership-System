@@ -6,4 +6,12 @@ class User < ApplicationRecord
 
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles, source: :role
+
+  def is_admin
+    roles.find_by(name: 'admin').present?
+  end
+
+  def is_premium
+    roles.find_by(name: 'premium').present?
+  end
 end

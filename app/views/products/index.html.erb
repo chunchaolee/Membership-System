@@ -1,5 +1,4 @@
-<h1 class="text-center">Home Page</h1>
-<div class="container text-center">
+<div class="container text-center", style="margin-top: 70px;">
   <div class="row justify-content-md-center">
     <% @products.each do |prod| %>
       <div class="col-md-auto col-sm-1 mb-4">
@@ -7,7 +6,19 @@
           <%= image_tag prod.image_url, width: '300px', height: '250', class: 'card-img-top', alt: 'Card image cap' if prod.image_url %>
           <div class="card-body">
             <h5 class="card-title"><%= prod.name %></h5>
-            <p class="card-text">Price: <%= prod.price %></p>
+            <% if current_user %>
+              <% if current_user.is_premium %>
+                <p class="card-text">Price: <%= number_to_currency((prod.price * 0.9)) %></p>
+              <% else %>
+                <p class="card-text">Price: <%= number_to_currency(prod.price) %></p>
+              <% end %>
+
+              <% if current_user.is_admin %>
+                <%= link_to "Edit", edit_product_path(prod), class: "btn btn-outline-secondary" %>
+              <% end %>
+            <% else %>
+              <p class="card-text">Price: <%= number_to_currency(prod.price) %></p>
+            <% end %>
           </div>
         </div>
       </div>
