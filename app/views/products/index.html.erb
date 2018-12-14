@@ -1,7 +1,7 @@
 <div class="container text-center", style="margin-top: 70px;">
   <div class="row justify-content-md-center">
     <% @products.each do |prod| %>
-      <div class="col-md-auto col-sm-1 mb-4">
+      <div class="col-md-auto col-sm-12 mb-4">
         <div class="card" style="width: 18rem;">
           <%= image_tag prod.image_url, width: '300px', height: '250', class: 'card-img-top', alt: 'Card image cap' if prod.image_url %>
           <div class="card-body">
@@ -23,5 +23,8 @@
         </div>
       </div>
     <% end %>
+  </div>
+  <div class="row justify-content-md-center">
+    <%= paginate @products %>
   </div>
 </div>
