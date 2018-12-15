@@ -1,0 +1,20 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: 
+  password: 
+  host: localhost
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: msadmin
+
+test:
+  <<: *default
+  database: msadmin_test
+
+production:
+  <<: *default
+  database: msadmin_production
+  

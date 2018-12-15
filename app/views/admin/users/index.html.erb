@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Promotion/Demotion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+            <% if user.is_admin %>
+              <td>Admin</td>
+            <% else %>
+              <td>Normal</td>
+            <% end %>
+            <td>
+              <% if user.is_admin %>
+                <%= link_to "Demotion", admin_user_demotion_path(user_id: user.id), method: :delete, class: "btn btn-outline-danger" %>
+              <% else %>
+                <%= link_to "Promotion", admin_user_promotion_path(user_id: user.id), method: :post, class: "btn btn-outline-primary" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

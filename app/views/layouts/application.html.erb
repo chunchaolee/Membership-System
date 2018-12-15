@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MemberSystem</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container-fluid" style="padding-right: 0px; padding-left: 0px;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <%= link_to "Member System", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if current_user %>
+              <% if current_user.is_admin %>
+                <li class="nav-item">
+                  <%= link_to "New Product", new_product_path, class: "nav-link" %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+
+          <ul class="navbar-nav">
+            <% if current_user %>
+              <% if current_user.is_admin && current_user.is_premium %>
+                <span class="navbar-text", style="padding: 8px 8px;">
+                  <span class="badge badge-info">Admin</span> 
+                  <span class="badge badge-warning">Premium</span> 
+                  <%= current_user.email %>
+                </span>
+                <li class="nav-item">
+                  <%= link_to "Admin Panel", root_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
+                </li>
+              <% elsif current_user.is_admin %>
+                <span class="navbar-text", style="padding: 8px 8px;">
+                  <span class="badge badge-info">Admin</span> <%= current_user.email %>
+                </span>
+                <li class="nav-item", style="padding: 8px 8px;">
+                  <%= link_to "Upgrade to Premium", role_upgrade_path, class: "badge badge-warning" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Admin Panel", admin_users_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
+                </li>
+              <% elsif current_user.is_premium %>
+                <span class="navbar-text">
+                  <span class="badge badge-warning">Premium</span> <%= current_user.email %>
+                </span>
+                <li class="nav-item">
+                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
+                </li>
+              <% else %>
+                <span class="navbar-text">
+                  <%= current_user.email %>
+                </span>  
+                <li class="nav-item", style="padding: 8px 8px;">
+                  <%= link_to "Upgrade to Premium", role_upgrade_path, class: "badge badge-warning" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
+                </li>
+              <% end %>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <% if notice.present? %>
+      <div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom: 0px;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p><%= notice %></p>
+      </div>
+    <% elsif alert.present? %>
+      <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0px;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
