@@ -9,7 +9,7 @@ gem 'kaminari'
 gem 'ffaker'
 
 # Database
-gem 'mysql2', '0.4.4'
+# gem 'mysql2', '0.4.4'
 
 # Upload
 gem 'carrierwave'
@@ -29,20 +29,25 @@ gem 'bootsnap'
 gem 'bootstrap'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'rails-controller-testing'
   gem 'shoulda'
   gem 'pry'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
 end
 
 group :development do
-  gem "capistrano"
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  gem 'pg', '~> 0.20'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
