@@ -36,10 +36,11 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'shoulda'
   gem 'pry'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
 end
 
 group :development do
-  gem "capistrano"
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

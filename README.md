@@ -10,7 +10,6 @@ $ git clone https://github.com/chunchaolee/Membership-System.git
 #### 2. Setup Environment
   - Ruby version: 2.4.4
   - Rails version: 5.2.2
-  - MySQL: 5.7.24 Homebrew
 
 #### 3. Setup Database
   - database.yml
