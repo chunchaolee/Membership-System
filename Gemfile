@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Essential gems
-ruby '2.4.4'
-gem 'rails', '~> 5.2.0'
+ruby '2.4.5'
+gem 'rails', '~> 5.2.2'
 gem 'devise'
 gem 'kaminari'
 gem 'ffaker'
+gem 'concurrent-ruby'
 
 # Database
 # gem 'mysql2', '0.4.4'
@@ -36,10 +37,11 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'shoulda'
   gem 'pry'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
 end
 
 group :development do
-  gem "capistrano"
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
